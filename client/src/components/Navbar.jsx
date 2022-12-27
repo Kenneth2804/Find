@@ -25,7 +25,7 @@ const Navbar = () => {
             </Link>
             </div>
         <nav ref={navRef}>
-            <a href="/#">Inicio</a>
+            <a href="/">Inicio</a>
             <a href="/#">Contactos</a>
             <a href="/#">Blog</a>
             <a href="/#">Acerca de nosotros</a>

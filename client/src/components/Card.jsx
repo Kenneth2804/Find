@@ -17,6 +17,7 @@ export default function Card ({id, name, surname, age, description, photo, tatto
 <Link to="/details">
     <img src={photo} alt="img not found" width="100px" height="100px"/>
 </Link>
+
 <h2>Nombre: </h2>{name} {surname}
 <h2>Edad: </h2>{age}
 
