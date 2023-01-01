@@ -1,4 +1,4 @@
-require ('dotenv').config();
+
 const { Router } = require('express');
 const {People, Country} = require ('../db');
 
@@ -7,33 +7,30 @@ const {People, Country} = require ('../db');
 const router = Router();
 
 router.post('/', async (req,res) =>{
-
-const {name, surname, age, description, photo, tattoos, height, country} = req.body;
+const {name, surname, age, description, tattoos, height, country, photo} = req.body
 try {
-    const usuario = await People.create({
+    const nuevo = await People.create({
         name, 
-        surname, 
-        age,
+        surname,
+        age,    
         description, 
-        photo,
         tattoos,
-        height
+        height,
+        photo,
+        country: Country.cname    });
+    const city = await Country.findAll({
+        where:{
+            cname: country
+        }
     })
-    const count = await Country.findAll({
-        where: {
-             cname: country
-            }
-        })
-        usuario.addCountry(count);
-
-
-    return res.status(200).send(usuario);
-
-
+ const alla = await  nuevo.addCountry(city);
+    console.log(alla)
+    
+    return res.status(200).send(nuevo)
 } catch (error) {
-return res.status(400).json(error.message)
+    res.status(400).send(error.message)
 }
-})
+        })
 
 
 
